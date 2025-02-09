@@ -1,4 +1,4 @@
-# Generated Cmake Pico project file
+
 
 cmake_minimum_required(VERSION 3.13)
 
@@ -23,45 +23,45 @@ if (EXISTS ${picoVscode})
     include(${picoVscode})
 endif()
 # ====================================================================================
-set(PICO_BOARD pico_w CACHE STRING "Board type")
+set(PICO_BOARD pico CACHE STRING "Board type")
 
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(serial C CXX ASM)
+project(DisplayC C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(serial serial.c )
+add_executable(DisplayC DisplayC.c inc/ssd1306.c)
 
-pico_set_program_name(serial "serial")
-pico_set_program_version(serial "0.1")
+pico_set_program_name(DisplayC "DisplayC")
+pico_set_program_version(DisplayC "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(serial 0)
-pico_enable_stdio_usb(serial 1)
+pico_enable_stdio_uart(DisplayC 0)
+pico_enable_stdio_usb(DisplayC 1)
 
-pico_generate_pio_header(serial ${CMAKE_CURRENT_LIST_DIR}/serial.pio)
+pico_generate_pio_header(DisplayC ${CMAKE_CURRENT_LIST_DIR}/DisplayC.pio)
 
-target_sources(serial PRIVATE serial.c)
+target_sources(DisplayC PRIVATE DisplayC.c)
 
 # Add the standard library to the build
-target_link_libraries(serial PRIVATE
+target_link_libraries(DisplayC
         pico_stdlib
-        hardware_pio
-        pico_bootrom)
+        hardware_pio)
 
 # Add the standard include files to the build
-target_include_directories(serial PRIVATE
+target_include_directories(DisplayC PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}
 )
 
 # Add any user requested libraries
-target_link_libraries(serial 
-        
+target_link_libraries(DisplayC 
+        hardware_i2c
         )
 
-pico_add_extra_outputs(serial)
+pico_add_extra_outputs(DisplayC)
+
