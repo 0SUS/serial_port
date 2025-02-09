@@ -424,6 +424,6 @@ int main() {
       }
         
 
-        tight_loop_contents(); // Mantém o processador em estado de espera
+        
     }
 }
