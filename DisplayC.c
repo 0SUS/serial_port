@@ -63,6 +63,8 @@ void debounce_handler(uint gpio, uint32_t events) {
         ssd1306_draw_string(&ssd, led_b_state ? "LED Azul ON" : "LED Azul OFF", 0, 0);
         ssd1306_send_data(&ssd);
         uart_puts(UART_PORT, led_b_state ? "LED Azul ligado\n" : "LED Azul desligado\n");
+
+        
     }
 }
 
@@ -117,6 +119,24 @@ void executar_animacao(PIO pio, uint sm, Animacao *anim) {
 }
 
 // Configuração de animações
+Animacao animacao_noone = {
+  .frames = {
+      {
+      0.0, 0.0, 0.0, 0.0, 0.0, 
+      0.0, 0.0, 0.0, 0.0, 0.0, 
+      0.0, 0.0, 0.0, 0.0, 0.0, 
+      0.0, 0.0, 0.0, 0.0, 0.0, 
+      0.0, 0.0, 0.0, 0.0, 0.0
+      }
+      
+  },
+  .num_frames = 1,
+  .r = 0.0,
+  .g = 0.0,
+  .b = 0.0,
+  .fps = 1
+};
+
 Animacao animacao_0 = {
   .frames = {
       {
@@ -310,6 +330,7 @@ void display_number(int8_t num, PIO pio, uint sm){
       case 7: executar_animacao(pio, sm, &animacao_7);break;
       case 8: executar_animacao(pio, sm, &animacao_8);break;
       case 9: executar_animacao(pio, sm, &animacao_9);break;
+      case 10: executar_animacao(pio, sm, &animacao_noone);break;
   }
 
 
@@ -398,7 +419,7 @@ int main() {
             int8_t numero = c-'0';
 
             display_number(numero, pio, sm);
-          }
+          }else{display_number(10, pio, sm);}
         }
       }
         
