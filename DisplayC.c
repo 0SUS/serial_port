@@ -52,6 +52,7 @@ void debounce_handler(uint gpio, uint32_t events) {
         ssd1306_draw_string(&ssd, led_g_state ? "LED Verde ON" : "LED Verde OFF", 0, 0);
         ssd1306_send_data(&ssd);
         uart_puts(UART_PORT, led_g_state ? "LED Verde ligado\n" : "LED Verde desligado\n");
+        printf("%s", led_g_state ? "LED Verde ligado\n" : "LED Verde desligado\n");
     }
     
     // Tratamento do botão B
@@ -63,7 +64,8 @@ void debounce_handler(uint gpio, uint32_t events) {
         ssd1306_draw_string(&ssd, led_b_state ? "LED Azul ON" : "LED Azul OFF", 0, 0);
         ssd1306_send_data(&ssd);
         uart_puts(UART_PORT, led_b_state ? "LED Azul ligado\n" : "LED Azul desligado\n");
-
+        printf("%s", led_b_state ? "LED Azul ligado\n" : "LED Azul desligado\n");
+        
         
     }
 }
