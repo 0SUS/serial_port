@@ -1,4 +1,4 @@
 [wokwi]
 version = 1
-firmware = 'build/semaforo.uf2'
-elf = 'build/semaforo.elf'
+firmware = 'build/serial.uf2'
+elf = 'build/serial.elf'
