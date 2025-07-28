@@ -1,6 +1,6 @@
 # Projeto: Controle de Display SSD1306 e Matriz de LEDs com BitDogLab
 
-Link do vídeo: https://youtu.be/h30Dr_6RvPU
+
 
 ## Descrição
 Este projeto utiliza a placa **BitDogLab** para exibir caracteres no **display SSD1306** via **UART**, controlar LEDs comuns e uma matriz de LEDs WS2812. O projeto também implementa **interrupções** para manipulação de botões e **debounce** para evitar leituras incorretas.
